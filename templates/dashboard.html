@@ -1,0 +1,85 @@
+{% extends "layuot.html" %}
+ {% block body %} 
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('      {{url_for('static',filename='assets/img/admin.jpg')}}       ')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Admin Panel</h1>
+                            <span class="subheading">Buddy, Love the way you code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<h2>Basic Action</h2>
+<hr>
+<a href="/edit/0"> <button class="btn btn-primary text-uppercase "> Add A new post</button></a>
+
+<a href="/logout"> <button class="btn btn-primary text-uppercase "> Log Out</button></a>
+
+<hr>
+
+<form action="/uploader" method="post" enctype="multipart/form-data"> 
+<input type="file" name="file1" >
+<button class="btn btn-primary text-uppercase">Upload</button>
+</form>
+<h3>File Uploader</h3>
+<div >
+  file uploader here
+</div>
+<hr>
+<h3>Edit Post</h3>
+                    <table>
+  <tr>
+    <th>sno</th>
+    <th>title</th>
+    <th>date</th>
+    <th>Edit</th>
+    <th>Delete</th>
+ 
+
+
+  </tr>
+  <hr>
+
+  {% for post in posts %}
+  <tr>
+    <td>{{post.sno}}</td>
+    <td>{{post.title}}</td>
+    <td>{{post.date}}</td>
+    <td> <a href="/edit/{{post.sno}}"><button class="btn btn-primary text-uppercase ">Edit</button></a></td>
+    <td> <a href="/delete/{{post.sno}}"><button class="btn btn-primary text-uppercase ">Delete</button></a></td>
+  </tr>
+  {% endfor %}
+  
+</table>
+                    </div>
+            </div>
+        </div>
+        <!-- Footer-->
+    {% endblock %}    
